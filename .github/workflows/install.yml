@@ -10,30 +10,24 @@ jobs:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v3
-      - name: Download & Extract BDS
+      - name: Download & Extract
         run: |
           source ./VERSION
           curl -L -o bds.zip https://minecraft.azureedge.net/bin-win/bedrock-server-${BDS_VER}.zip
           unzip bds.zip
-        shell: bash
-      - name: Download & Extract LL
-        run: |
-          source ./VERSION
           curl -L -o ll.zip https://github.com/LiteLDev/LiteLoaderBDS/releases/download/$LL_VER/LiteLoaderBDS.zip
           unzip ll.zip
           mv LiteLoaderBDS/* .
           rmdir LiteLoaderBDS
+          rm ll.zip bds.zip bedrock_server_how_to.html release-notes.txt
         shell: bash
       - name: Install LiteLoaderBDS
         run: ./PeEditor.exe
       - name: Clean
-        run:  rm ll.zip bds.zip bedrock_server_how_to.html release-notes.txt
-        shell: bash
-      - name: Compress
-        run: 7z a llbds.7z .
+        run: rm bedrock_server.exe.bak VERSION .git .github -rf
         shell: bash
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Output
-          path: llbds.7z
+          path: .
