@@ -13,7 +13,7 @@ jobs:
       - name: Download & Extract BDS
         run: |
           source ./VERSION
-          curl -L -o bds.zip "https://minecraft.azureedge.net/bin-win/bedrock-server-BDS_VER.zip"
+          curl -L -o bds.zip https://minecraft.azureedge.net/bin-win/bedrock-server-${BDS_VER}.zip
           unzip bds.zip
         shell: bash
       - name: Download & Extract LL
