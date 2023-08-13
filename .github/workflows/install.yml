@@ -24,14 +24,14 @@ jobs:
           mv LiteLoaderBDS/* .
           rmdir LiteLoaderBDS
         shell: bash
+      - name: Install LiteLoaderBDS
+        run: ./PeEditor.exe
       - name: Clean
         run:  rm ll.zip bds.zip bedrock_server_how_to.html release-notes.txt
         shell: bash
       - name: Compress
         run: 7z a llbds.7z .
         shell: bash
-      - name: Install LiteLoaderBDS
-        run: ./PeEditor.exe
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
