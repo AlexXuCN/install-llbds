@@ -1,38 +1,25 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Install
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  install:
     runs-on: windows-2022
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
       - name: Download & Extract BDS
         run: |
-          curl -L -o bds.zip "https://minecraft.azureedge.net/bin-win/bedrock-server-1.20.12.01.zip"
+          source ./VERSION
+          curl -L -o bds.zip "https://minecraft.azureedge.net/bin-win/bedrock-server-BDS_VER.zip"
           unzip bds.zip
         shell: bash
-      # Runs a set of commands using the runners shell
       - name: Download & Extract LL
         run: |
-          curl -L -o ll.zip "https://minecraft.azureedge.net/bin-win/bedrock-server-1.20.12.01.zip"
+          source ./VERSION
+          curl -L -o ll.zip https://github.com/LiteLDev/LiteLoaderBDS/releases/download/$LL_VER/LiteLoaderBDS.zip
           unzip ll.zip
           mv LiteLoaderBDS/* .
           rmdir LiteLoaderBDS
