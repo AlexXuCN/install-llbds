@@ -15,7 +15,7 @@ jobs:
           source ./VERSION
           curl -L -o bds.zip https://minecraft.azureedge.net/bin-win/bedrock-server-${BDS_VER}.zip
           unzip bds.zip
-          curl -L -o ll.zip https://github.com/LiteLDev/LiteLoaderBDS/releases/download/$LL_VER/LiteLoaderBDS.zip
+          curl -L -o ll.zip https://github.com/LiteLDev/LiteLoaderBDSv2/releases/download/$LL_VER/LiteLoaderBDS.zip
           unzip ll.zip
           mv LiteLoaderBDS/* .
           rmdir LiteLoaderBDS
