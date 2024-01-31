@@ -22,7 +22,10 @@ jobs:
           rm ll.zip bds.zip bedrock_server_how_to.html release-notes.txt
         shell: bash
       - name: Install LiteLoaderBDS
-        run: ./$INSTALLER
+        run: |
+          source ./VERSION
+          ./$INSTALLER
+        shell: bash
       - name: Compress
         run: |
           rm bedrock_server.exe.bak VERSION .git .github -rf
